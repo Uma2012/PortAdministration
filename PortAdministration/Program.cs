@@ -10,7 +10,7 @@ namespace PortAdministration
     {
         static void Main(string[] args)
         {
-            //char enterNForNextDay = 'n';
+            
             int dayCount = 1;                  
             
 
@@ -40,10 +40,8 @@ namespace PortAdministration
             
             int[] dailyBoats = new int[5];
             do
-            {                        
-               
-
-                //Generate 5 random boats for everyday.
+            {                      
+                //Generate 5 random boats for a day.
                 for (int i = 0; i < dailyBoats.Length; i++)
                 {
 

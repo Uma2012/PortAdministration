@@ -4,8 +4,8 @@ using System.Text;
 
 namespace PortAdministration.Models
 {
-    public class MotorBoat:Boat
+    public class CargoShip:Boat
     {
-        public int HorsePower { get; set; }
+        public int Containers { get; set; }
     }
 }

@@ -4,12 +4,8 @@ using System.Text;
 
 namespace PortAdministration.Models
 {
-    class SailBoat
+    public class SailBoat:Boat
     {
-        public string Id { get; set; }
-        public int Weight { get; set; }
-        public int MaxSpeed { get; set; }
-        public int HorsePower { get; set; }
-        public int HaltingDays { set { HaltingDays = 4; } }
+        public int BoatLength { get; set; }
     }
 }

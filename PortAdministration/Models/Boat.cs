@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PortAdministration.Models
 {
-    class Boat
+    public class Boat
     {
         public string BoatId { get; set; }
         public int SizeofBoat { get; set; }
