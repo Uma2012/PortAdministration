@@ -34,8 +34,9 @@ namespace PortAdministration
             //Initialize rejected boats of an day
             int rejectedboat = 0;
 
-            //instantiate the random generator class
-           // GenerateRandomBoat randomGenerator = new GenerateRandomBoat();
+            //Initialize Free slot count
+            int freeSlot = 0;
+
             
             int[] dailyBoats = new int[5];
             do
@@ -72,7 +73,7 @@ namespace PortAdministration
                             for (int j = 0; j < totalNumberOfPortSlot.Length; j++)
                             {   if (j < 24)
                                 {
-                                    if (boatPlacedInSlots[j] == null && boatPlacedInSlots[j + 1] == null)
+                                    if ((boatPlacedInSlots[j] == null && boatPlacedInSlots[j + 1] == null)||(boatPlacedInSlots[j]==""&& boatPlacedInSlots[j+1] == ""))
                                     {
                                         boatPlacedInSlots[j] = boatgenrated.ToString();
                                         boatPlacedInSlots[j + 1] = boatgenrated.ToString();
@@ -92,9 +93,10 @@ namespace PortAdministration
                         case "C":
                             for (int j = 0; j < totalNumberOfPortSlot.Length; j++)
                             {
-                                if (j < 21)
+                                if (j < 22)
                                 {
-                                    if (boatPlacedInSlots[j] == null && boatPlacedInSlots[j + 1] == null && boatPlacedInSlots[j + 2] == null && boatPlacedInSlots[j + 3] == null)
+                                    if ((boatPlacedInSlots[j] == null && boatPlacedInSlots[j + 1] == null && boatPlacedInSlots[j + 2] == null && boatPlacedInSlots[j + 3] == null)
+                                        ||(boatPlacedInSlots[j] == ""&& boatPlacedInSlots[j+1] == ""&& boatPlacedInSlots[j+2] == ""&& boatPlacedInSlots[j+3] == ""))
                                     {
                                         boatPlacedInSlots[j] = boatgenrated.ToString();
                                         boatPlacedInSlots[j + 1] = boatgenrated.ToString();
@@ -156,6 +158,13 @@ namespace PortAdministration
                         rejectedboat++;
 
                 }
+                //Free slots
+                foreach (var boat in boatPlacedInSlots)
+                {
+                    if (boat == null || boat == "")
+                        freeSlot++;
+
+                }
 
                 Console.WriteLine("Plats \t BoatType\t\t BoatName\t\tDayIn\t\tDayOut");
                 for (int k = 0; k < totalNumberOfPortSlot.Length; k++)
@@ -165,8 +174,8 @@ namespace PortAdministration
                 }
                 
 
-                Console.WriteLine($"Rejected Boats count in day {dayCount}:{rejectedboat}");
-               
+                Console.WriteLine($"Number of Rejected Boats in day {dayCount} is {rejectedboat}");
+                Console.WriteLine($"Number of Free slots in day {dayCount} is {freeSlot}");
 
                 Console.WriteLine("----------Enter any key for next day------");
                 if(Console.ReadKey().Key == ConsoleKey.Enter)               
@@ -176,6 +185,9 @@ namespace PortAdministration
 
                 //resetting rejected boat
                 rejectedboat = 0;
+                //resetting free slots count
+                freeSlot = 0;
+
             } while (true);
 
 
