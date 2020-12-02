@@ -45,7 +45,8 @@ namespace PortAdministration.Methods
         //3 for CargoShip
         public static string GenerateBoatNameWithPrefix()
         {
-            int generateNumber = _random.Next(1, 4);
+            int generateNumber = _random.Next(1, 5);
+           // generateNumber = 4;
 
             //generate randomstring
             var builder = new StringBuilder(3);
@@ -58,8 +59,10 @@ namespace PortAdministration.Methods
                 builder.Append("S-");
 
             }
-            else
+            else if (generateNumber == 3)
                 builder.Append("C-");
+            else
+                builder.Append("R-");
 
             char offset = 'A';
             const int letterOffset = 26;
@@ -68,7 +71,7 @@ namespace PortAdministration.Methods
                 var @char = (char)_random.Next(offset, offset + letterOffset);
                 builder.Append(@char);
             }
-          
+
             return builder.ToString();
         }
 

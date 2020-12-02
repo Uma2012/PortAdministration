@@ -37,7 +37,19 @@ namespace PortAdministration
             //Initialize Free slot count
             int freeSlot = 0;
 
-            
+            //Initialize rowbaot dayin dayout
+
+            int[] dayInRow = new int[25];
+            int[] dayOutRow = new int[25];
+            string[] secondRowBoat = new string[25];
+            string[] boatTypeVaraibleRowBoat = new string[25];
+
+            //Initialize prefix array
+            string[] prefixArray = new string[25];
+
+
+
+
             int[] dailyBoats = new int[5];
             do
             {                      
@@ -49,9 +61,72 @@ namespace PortAdministration
                     boatsOfADay[i] = boatgenrated;
 
                     int index = boatgenrated.IndexOf('-');
-                    string prefix = boatgenrated.Substring(0, index);                   
-                    switch(prefix)
+                    string prefix = boatgenrated.Substring(0, index);
+
+                    //assigning prefix
+                    for (int j = 0; j < 25; j++)
                     {
+                       
+                            if (boatPlacedInSlots[j] != null && boatPlacedInSlots[j]!="")
+                            {
+                                int index1 = boatPlacedInSlots[j].IndexOf('-');
+                                string prefix1 = boatPlacedInSlots[j].Substring(0, index1);
+                                prefixArray[j] = prefix1;
+                            }
+                        
+
+
+                     }
+                    
+
+
+
+                    switch (prefix)
+                    {
+                        case "R":
+                            for (int j = 0; j < totalNumberOfPortSlot.Length; j++)
+                            {
+                                
+                                
+
+                                if((prefixArray[j]=="R"&& secondRowBoat[j]==null)|| (prefixArray[j] == "R" && secondRowBoat[j] == ""))
+                                {                                   
+
+                                        secondRowBoat[j] = boatgenrated.ToString();
+                                        dayInRow[j] = dayCount;
+                                        dayOutRow[j] = dayCount + 1;
+                                        boatTypeVaraibleRowBoat[j] = "RowBoat";
+
+                                        break;
+                                   
+                                }
+                                else if(prefixArray[j]==""&&secondRowBoat[j]!=null)
+                                {
+                                    boatPlacedInSlots[j] = boatgenrated.ToString();
+                                    DayIn[j] = dayCount;
+                                    DayOut[j] = dayCount + 1;
+                                    boatTypeVariable[j] = "RowBoat";
+                                    break;
+
+                                }
+                                
+                                else
+                                {
+                                    
+                                    if (boatPlacedInSlots[j] == null || boatPlacedInSlots[j] == "")
+                                    {
+                                        boatPlacedInSlots[j] = boatgenrated.ToString();
+                                        DayIn[j] = dayCount;
+                                        DayOut[j] = dayCount + 1;
+                                        boatTypeVariable[j] = "RowBoat";
+                                        break;
+                                    }
+                                }
+
+                                
+
+                            }
+                                break;
                         case "M":
                             for (int j = 0; j < totalNumberOfPortSlot.Length; j++)
                             {
@@ -133,7 +208,18 @@ namespace PortAdministration
                         DayIn[i] = 0;
                         DayOut[i] = 0;
                         boatTypeVariable[i] = "";
+                        prefixArray[i] = "";
                     }
+
+                    if(dayOutRow[i]==dayCount)
+                    {
+                        secondRowBoat[i] = "";
+                        dayInRow[i] = 0;
+                        dayOutRow[i] = 0;
+                        boatTypeVaraibleRowBoat[i] = "";
+                        prefixArray[i] = "";
+                    }
+
 
                 }
 
@@ -153,7 +239,10 @@ namespace PortAdministration
                     int resultPosition = Array.IndexOf(boatPlacedInSlots, boat);
 
                     if (resultPosition < 0)
+                    {
+
                         rejectedboat++;
+                    }
 
                 }
                 //Free slots
@@ -169,11 +258,21 @@ namespace PortAdministration
 
                 for (int k = 0; k < totalNumberOfPortSlot.Length; k++)
                 {
+                   
 
-                    // Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}\t\t\t{DayIn[k]}\t\t\t{DayOut[k]}");
-                    Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}");
+                    Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}\t\t\t{DayIn[k]}\t\t\t{DayOut[k]}");
+                    //Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}");
+                    if (secondRowBoat[k]!=null && secondRowBoat[k]!="")            
+                    {
+                       
+                       Console.WriteLine($"{k}\t {boatTypeVaraibleRowBoat[k]}\t\t{secondRowBoat[k]}\t\t\t{dayInRow[k]}\t\t\t{dayOutRow[k]}");
+
+
+                    }
                 }
-                
+
+
+
 
                 Console.WriteLine($"Number of Rejected Boats in day {dayCount} is {rejectedboat}");
                 Console.WriteLine($"Number of Free slots in day {dayCount} is {freeSlot}");
