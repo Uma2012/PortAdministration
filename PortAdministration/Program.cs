@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using PortAdministration.Methods;
-using PortAdministration.Models;
+
 
 namespace PortAdministration
 {
@@ -241,17 +241,18 @@ namespace PortAdministration
                 }               
 
                 Console.WriteLine("\n--Boat placed in slots list--");
-                Console.WriteLine("Plats \t BoatType\t\t BoatName\t\tDayIn\t\tDayOut");
-               // Console.WriteLine("Slot \t BoatType\t\t BoatName");
+               // Console.WriteLine("Plats \t BoatType\t\t BoatName\t\tDayIn\t\tDayOut");
+                Console.WriteLine("Slot \t BoatType\t\t BoatName");
 
                 for (int k = 0; k < totalNumberOfPortSlot.Length; k++)
                 {                   
 
-                    Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}\t\t\t{DayIn[k]}\t\t\t{DayOut[k]}");
-                    //Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}");
+                    //Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}\t\t\t{DayIn[k]}\t\t\t{DayOut[k]}");
+                    Console.WriteLine($"{k}\t {boatTypeVariable[k]}\t\t{boatPlacedInSlots[k]}");
                     if (secondRowBoat[k]!=null && secondRowBoat[k]!="")            
                     {                       
-                       Console.WriteLine($"{k}\t {boatTypeVaraibleRowBoat[k]}\t\t{secondRowBoat[k]}\t\t\t{dayInRow[k]}\t\t\t{dayOutRow[k]}");
+                       //Console.WriteLine($"{k}\t {boatTypeVaraibleRowBoat[k]}\t\t{secondRowBoat[k]}\t\t\t{dayInRow[k]}\t\t\t{dayOutRow[k]}");
+                        Console.WriteLine($"{k}\t {boatTypeVaraibleRowBoat[k]}\t\t{secondRowBoat[k]}");
 
                     }
                 }
