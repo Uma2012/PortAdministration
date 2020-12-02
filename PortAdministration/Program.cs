@@ -240,7 +240,8 @@ namespace PortAdministration
 
                     if (resultPosition < 0)
                     {
-
+                        int isSecondRowboatPresent= Array.IndexOf(secondRowBoat, boat);
+                        if(isSecondRowboatPresent < 0)
                         rejectedboat++;
                     }
 
